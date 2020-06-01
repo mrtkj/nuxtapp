@@ -1,0 +1,2 @@
+# nuxtapp
+nuxt sample application
