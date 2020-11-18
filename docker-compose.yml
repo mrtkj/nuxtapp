@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    web:
+        image: node:12.13.0
+        tty: true
+        volumes: 
+            - ../nuxtapp:/src
+        environment:
+            HOST: 0.0.0.0
+        working_dir: /src
+        command: sh -c "yarn && yarn dev"
+        ports:
+            - 3000:3000
