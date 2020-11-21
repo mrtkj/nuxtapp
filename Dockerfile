@@ -1,7 +1,13 @@
-# image
-# FROM node: 12.13.0-alpine
+# Nodeイメージの取得
+FROM node:14.4.0-alpine
+RUN apk update
+RUN apk add curl
 
-# command
-# RUN apk update && \
-    # apl add git && \
-    # npm install -g 
+# ワーキングディレクトリの指定
+WORKDIR /src
+COPY package*.json ./
+RUN yarn install
+COPY . .
+RUN yarn run build
+# 起動コマンド
+CMD ["yarn", "run", "start"]
