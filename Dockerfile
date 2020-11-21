@@ -9,6 +9,5 @@ COPY package*.json ./
 RUN yarn install
 COPY . .
 RUN yarn run build
-EXPOSE $PORT
 # 起動コマンド
 CMD ["yarn", "run", "start"]
