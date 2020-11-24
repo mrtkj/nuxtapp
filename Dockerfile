@@ -11,6 +11,7 @@ RUN go build ./api/src/cmd/main.go
 FROM node:14.4.0-alpine
 RUN apk update
 RUN apk add curl
+RUN apk add --no-cache supervisor
 
 # ワーキングディレクトリの指定
 WORKDIR /src
@@ -19,6 +20,10 @@ RUN yarn install
 COPY . .
 RUN yarn run build
 # 起動コマンド
-CMD ["yarn", "run", "start"]
+# RUN chmod 744 /src/startup.sh
+# CMD ["yarn", "run", "start"]
+# CMD ["startup.sh"]
+# CMD ["pm2", "start", "pm2.config.js", "--no-daemon"]
+CMD ["/usr/bin/supervisord"]
 
 COPY --from=builder /go/src/github.com/sample /app

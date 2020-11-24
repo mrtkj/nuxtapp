@@ -91,3 +91,4 @@ sw.*
 
 # add
 ./package-lock.json
+go.sum
