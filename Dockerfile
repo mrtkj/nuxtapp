@@ -20,10 +20,3 @@ RUN yarn install
 COPY . .
 RUN yarn run build
 COPY --from=builder /go/src/github.com/sample /app
-
-# Procfile
-WORKDIR /
-RUN touch /Procfile
-RUN echo "web: yarn run start" >> /Procfile
-RUN echo "worker: /app/main" >> /Procfile
-COPY Procfile /
