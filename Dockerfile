@@ -6,12 +6,6 @@ WORKDIR /go/src/github.com/sample
 COPY . .
 RUN go build ./api/src/cmd/main.go
 
-FROM alpine as pf
-WORKDIR /heroku/config
-RUN touch Procfile
-RUN echo "web: nuxt start" >> Procfile
-RUN echo "worker: /app/main" >> Procfile
-
 # # Nodeイメージの取得
 FROM node:14.4.0-alpine
 RUN apk update
@@ -24,4 +18,3 @@ RUN yarn install
 COPY . .
 RUN yarn run build
 COPY --from=builder /go/src/github.com/sample /src
-COPY --from=pf /heroku/config /src
