@@ -24,4 +24,4 @@ RUN yarn install
 COPY . .
 RUN yarn run build
 COPY --from=builder /go/src/github.com/sample /src
-COPY --from=pf /heroku/config /
+COPY --from=pf /heroku/config /src
