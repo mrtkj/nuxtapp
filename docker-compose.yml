@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    command: /usr/bin/supervisord -c /src/supervisord.conf
     environment:
       - PORT=3000
     ports:

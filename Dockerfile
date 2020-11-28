@@ -19,11 +19,4 @@ COPY package*.json ./
 RUN yarn install
 COPY . .
 RUN yarn run build
-# 起動コマンド
-# RUN chmod 744 /src/startup.sh
-# CMD ["yarn", "run", "start"]
-# CMD ["startup.sh"]
-# CMD ["pm2", "start", "pm2.config.js", "--no-daemon"]
-CMD ["/usr/bin/supervisord", "-c", "/src/supervisord.conf"]
-
 COPY --from=builder /go/src/github.com/sample /app
